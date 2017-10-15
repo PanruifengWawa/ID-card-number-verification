@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    <script src="js/ID.js"></script>
+    <script src="js/GB.js"></script>
+    <script src="js/t2.js"></script>
+  </head>
+   
+  <body>
+    <div>
+      <input type="text" style="display:none" name="name" placeholder="输入姓名" onBlur="this.value=ignoreSpaces(this.value);" class="input" id='card_q' value="测试">
+         <span class="xm">18位身份证号码：</span>
+          <input type="text" name="number" placeholder="输入身份证号" class="input" id='card_no' onkeyup="value=value.replace(/\s/g,'')">
+          <button onclick="query()">查 询</button>
+
+    </div>
+    <script>
+      function query() {
+        var checkLegal = checkCard();
+        if (!checkLegal) {
+          return;
+        };
+
+        var Validator = new IDValidator();
+        var code = document.getElementById('card_no').value;  
+        var i = Validator.card_no(code);
+        alert(JSON.stringify(i));
+
+      }
+    </script>
+</html>
